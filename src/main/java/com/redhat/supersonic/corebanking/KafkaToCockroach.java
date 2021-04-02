@@ -37,7 +37,7 @@ public class KafkaToCockroach {
         
         // 残高が振込額以上であれば振り込みを実施する
         Account.update("balance = ?1 where id = ?2", sourceAccount.balance.subtract(transfer.amount),transfer.sourceId);
-        Account.update("balance = ?1 where id = ?2", sourceAccount.balance.add(transfer.amount),transfer.destinationId);
+        Account.update("balance = ?1 where id = ?2", destinationAccount.balance.add(transfer.amount),transfer.destinationId);
 
         return new TransferResult(transfer,new Date().toString(),"OK");
     }
